@@ -1632,7 +1632,7 @@ L140:
         lw      a5,-36(a5)
         add     a4,a3,a5
         addi    a5,zero,3
-        div     a4,a4,a5
+        divu     a4,a4,a5
         # x
         lw      a5,0x16c
         add     a4,a4,a5
@@ -1668,7 +1668,7 @@ L142:
         lw      a5,-44(a5)
         add     a4,a4,a5
         addi    a5,zero,3
-        div     a4,a4,a5
+        divu     a4,a4,a5
         # x
         lw      a5,0x16c
         add     a4,a4,a5
@@ -1687,7 +1687,7 @@ L141:
         lw      a5,-28(s0)
         add     a4,a4,a5
         addi    a5,zero,3
-        div     a4,a4,a5
+        divu     a4,a4,a5
         # x
         lw      a5,0x16c
         add     a4,a4,a5
@@ -1699,7 +1699,7 @@ L141:
         lw      a5,-52(s0)
         add     a4,a4,a5
         addi    a5,zero,3
-        div     a4,a4,a5
+        divu     a4,a4,a5
         # x
         lw      a5,0x16c
         add     a4,a4,a5
@@ -1802,7 +1802,7 @@ L150:
         lw      a5,-36(a5)
         add     a4,a3,a5
         addi    a5,zero,3
-        div     a4,a4,a5
+        divu     a4,a4,a5
         # y
         lw      a5,0x170
         add     a4,a4,a5
@@ -1838,7 +1838,7 @@ L152:
         lw      a5,-44(a5)
         add     a4,a4,a5
         addi    a5,zero,3
-        div     a4,a4,a5
+        divu     a4,a4,a5
         # y
         lw      a5,0x170
         add     a4,a4,a5
@@ -1857,7 +1857,7 @@ L151:
         lw      a5,-28(s0)
         add     a4,a4,a5
         addi    a5,zero,3
-        div     a4,a4,a5
+        divu     a4,a4,a5
         # y
         lw      a5,0x170
         add     a4,a4,a5
@@ -1869,7 +1869,7 @@ L151:
         lw      a5,-52(s0)
         add     a4,a4,a5
         addi    a5,zero,3
-        div     a4,a4,a5
+        divu     a4,a4,a5
         # y
         lw      a5,0x170
         add     a4,a4,a5
