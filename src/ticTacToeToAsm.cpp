@@ -11,6 +11,9 @@ void Reset()
 	for (int i = 0; i < ROW; i++)
          for (int j = 0; j < COL; j++)
              chessboard[i][j] = 1;
+    for (int i = 0; i < ROW; i++)
+         for (int j = 0; j < COL; j++)
+             chess[i][j] = 0;
 	x = 0;
 	y = 0;
 	myCount = 0;

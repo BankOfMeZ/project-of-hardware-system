@@ -2285,8 +2285,7 @@ L177:
         addi    a5,zero,1
         bne     a4,a5,L174
         addi    a0,zero,1
-        lw      ra,showChessPieces
-        jalr    ra,0(ra)
+        call    showChessPieces
         jal     zero, L175
 L174:
         # chess
@@ -2302,8 +2301,7 @@ L174:
         lw      a5,0(a5)
         bne     a5,zero,L176
         addi    a0,zero,0
-        lw      ra,showChessPieces
-        jalr    ra,0(ra)
+        call    showChessPieces
         jal     zero, L175
 L176:
         # chess
@@ -2320,8 +2318,7 @@ L176:
         addi    a5,zero,-1
         bne     a4,a5,L175
         addi    a0,zero,-1
-        lw      ra,showChessPieces
-        jalr    ra,0(ra)
+        call    showChessPieces
 L175:
         lw      a5,-24(s0)
         addi    a5,a5,1
@@ -2362,8 +2359,7 @@ PlayTicTacToe:
         sw      ra,28(sp)
         sw      s0,24(sp)
         addi    s0,sp,32
-        lw      ra,Reset
-        jalr    ra,0(ra)
+        call	Reset
         
         #wait intr
         addi    a7,zero,0
@@ -2397,29 +2393,25 @@ L180:
         bne     a4,a5,L182
 L181:
         lw      a0,-20(s0)
-        lw      ra,PlayerInput
-        jalr    ra,0(ra)
+        call    PlayerInput
         jal     zero, L183
 L182:
         lw      ra,PcPlay
         jalr    ra,0(ra)
 L183:
-        lw      ra,PrintChessboard
-        jalr    ra,0(ra)
+        call    PrintChessboard
         # myCount
         lw      a5,0x174
         addi    a4,a5,1
         # myCount
         sw      a4,0x174
-        lw      ra,isWin
-        jalr    ra,0(ra)
+        call    isWin
         sw      a0,-28(s0)
         lw      a4,-28(s0)
         addi    a5,zero,-1
         bne     a4,a5,L184
         addi    a0,zero,2
-        lw      ra,showWinner
-        jalr    ra,0(ra)
+        call    showWinner
         addi    a5,zero,0
         jal     zero, L185
 L184:
@@ -2427,13 +2419,11 @@ L184:
         addi    a5,zero,1
         bne     a4,a5,L186
         addi    a0,zero,1
-        lw      ra,showWinner
-        jalr    ra,0(ra)
+        call    showWinner
         addi    a5,zero,0
         jal     zero, L185
 L186:
-        lw      ra,evaluate
-        jalr    ra,0(ra)
+        call    evaluate
         sw      a0,-28(s0)
         # y
         lw      a5,0x170
@@ -2448,8 +2438,7 @@ L187:
         bne     a4,a5,L190
 L188:
         addi    a0,zero,0
-        lw      ra,showWinner
-        jalr    ra,0(ra)
+        call    showWinner
         addi    a5,zero,0
 L185:
         addi    a0,a5,0
@@ -2468,8 +2457,7 @@ main:
         sw      s0,8(sp)
         addi    s0,sp,16
 L192:
-        lw      ra,PlayTicTacToe
-        jalr    ra,0(ra)
+        call	PlayTicTacToe
         
         #wait intr
         # a0 indicate whether repeat
