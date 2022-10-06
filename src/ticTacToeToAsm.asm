@@ -2259,6 +2259,7 @@ PlayerInput:
 showChessPieces:
         addi    a7,zero,34
         ecall
+        jalr    zero,0(ra)
 
 PrintChessboard:
         addi    sp,sp,-32
@@ -2344,15 +2345,18 @@ L172:
 PVPmode:
         addi    a7,zero,2
         sw      a7,-24(s0)
+        uret
 
 PVCmode:
         addi    a7,zero,1
         sw      a7,-24(s0)
+        uret
 
 showWinner:
         addi    a0,zero,3
         addi    a7,zero,34
         ecall
+        jalr    zero,0(ra)
 
 PlayTicTacToe:
         addi    sp,sp,-32
@@ -2449,8 +2453,10 @@ L185:
 
 isRepeat:
         addi    a0,zero,1
+        uret
 notRepeat:
         addi    a0,zero,0
+        uret
 main:
         addi    sp,sp,-16
         sw      ra,12(sp)
