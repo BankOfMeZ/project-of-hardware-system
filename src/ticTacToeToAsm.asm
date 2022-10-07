@@ -158,7 +158,7 @@ L12:
         bgtu    a5,a4,L14
         slli    a4,a5,2
         # 
-        lw      a5,L16
+        la      a5,L16
         add     a5,a4,a5
         lw      a5,0(a5)
         jalr    zero,0(a5)
@@ -508,7 +508,7 @@ L42:
         bgtu    a5,a4,L44
         slli    a4,a5,2
         #
-        lw      a5,L46
+        la      a5,L46
         add     a5,a4,a5
         lw      a5,0(a5)
         jalr    zero,0(a5)
@@ -850,7 +850,7 @@ L71:
         bgtu    a5,a4,L73
         slli    a4,a5,2
         # 
-        lw      a5,L75
+        la      a5,L75
         add     a5,a4,a5
         lw      a5,0(a5)
         jalr    zero,0(a5)
@@ -1102,7 +1102,7 @@ L99:
         bgtu    a5,a4,L101
         slli    a4,a5,2
         # 
-        lw      a5,L103
+        la      a5,L103
         add     a5,a4,a5
         lw      a5,0(a5)
         jalr    zero,0(a5)
@@ -2400,8 +2400,7 @@ L181:
         call    PlayerInput
         jal     zero, L183
 L182:
-        lw      ra,PcPlay
-        jalr    ra,0(ra)
+        call	PcPlay
 L183:
         call    PrintChessboard
         # myCount
