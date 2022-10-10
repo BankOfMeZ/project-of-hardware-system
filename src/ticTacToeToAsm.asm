@@ -2118,7 +2118,7 @@ L157:
 getInput00:
         addi    a7,zero,1
         lw      a1,0x100
-        beq     a1,zero,return1
+        bne     a1,zero,return1
         lw      a1,-36(s0)
         sw      a1,0x100
         addi    a1,zero,2
@@ -2127,82 +2127,82 @@ getInput00:
         uret
 getInput01:
         addi    a7,zero,1
-        lw      a1,0x101
-        beq     a1,zero,return2
-        lw      a1,-36(s0)
-        sw      a1,0x101
-        addi    a1,zero,2
-        sw      a1,0x125
-    return2:
-        uret
-getInput02:
-        addi    a7,zero,1
-        lw      a1,0x102
-        beq     a1,zero,return3
-        lw      a1,-36(s0)
-        sw      a1,0x102
-        addi    a1,zero,2
-        sw      a1,0x126
-    return3:
-        uret
-getInput10:
-        addi    a7,zero,1
-        lw      a1,0x103
-        beq     a1,zero,return4
-        lw      a1,-36(s0)
-        sw      a1,0x103
-        addi    a1,zero,2
-        sw      a1,0x127
-    return4:
-        uret
-getInput11:
-        addi    a7,zero,1
         lw      a1,0x104
-        bne     a1,zero,return5
+        bne     a1,zero,return2
         lw      a1,-36(s0)
         sw      a1,0x104
         addi    a1,zero,2
         sw      a1,0x128
-    return5:
+    return2:
         uret
-getInput12:
-        addi    a7,zero,1
-        lw      a1,0x105
-        beq     a1,zero,return6
-        lw      a1,-36(s0)
-        sw      a1,0x105
-        addi    a1,zero,2
-        sw      a1,0x129
-    return6:
-        uret
-getInput20:
-        addi    a7,zero,1
-        lw      a1,0x106
-        beq     a1,zero,return7
-        lw      a1,-36(s0)
-        sw      a1,0x106
-        addi    a1,zero,2
-        sw      a1,0x12a
-    return7:
-        uret
-getInput21:
-        addi    a7,zero,1
-        lw      a1,0x107
-        beq     a1,zero,return8
-        lw      a1,-36(s0)
-        sw      a1,0x107
-        addi    a1,zero,2
-        sw      a1,0x12b
-    return8:
-        uret
-getInput22:
+getInput02:
         addi    a7,zero,1
         lw      a1,0x108
-        beq     a1,zero,return9
+        bne     a1,zero,return3
         lw      a1,-36(s0)
         sw      a1,0x108
         addi    a1,zero,2
         sw      a1,0x12c
+    return3:
+        uret
+getInput10:
+        addi    a7,zero,1
+        lw      a1,0x10c
+        bne     a1,zero,return4
+        lw      a1,-36(s0)
+        sw      a1,0x10c
+        addi    a1,zero,2
+        sw      a1,0x130
+    return4:
+        uret
+getInput11:
+        addi    a7,zero,1
+        lw      a1,0x110
+        bne     a1,zero,return5
+        lw      a1,-36(s0)
+        sw      a1,0x110
+        addi    a1,zero,2
+        sw      a1,0x134
+    return5:
+        uret
+getInput12:
+        addi    a7,zero,1
+        lw      a1,0x114
+        bne     a1,zero,return6
+        lw      a1,-36(s0)
+        sw      a1,0x114
+        addi    a1,zero,2
+        sw      a1,0x138
+    return6:
+        uret
+getInput20:
+        addi    a7,zero,1
+        lw      a1,0x118
+        bne     a1,zero,return7
+        lw      a1,-36(s0)
+        sw      a1,0x118
+        addi    a1,zero,2
+        sw      a1,0x13c
+    return7:
+        uret
+getInput21:
+        addi    a7,zero,1
+        lw      a1,0x11c
+        bne     a1,zero,return8
+        lw      a1,-36(s0)
+        sw      a1,0x11c
+        addi    a1,zero,2
+        sw      a1,0x140
+    return8:
+        uret
+getInput22:
+        addi    a7,zero,1
+        lw      a1,0x120
+        bne     a1,zero,return9
+        lw      a1,-36(s0)
+        sw      a1,0x120
+        addi    a1,zero,2
+        sw      a1,0x144
     return9:
         uret
 
@@ -2234,7 +2234,7 @@ PlayerInput:
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a4,-36(s0)
-        sw      a4,0(a5)
+        # sw      a4,0(a5)
         lw      a5,-20(s0)
         addi    a4,a5,-1
         lw      a5,-24(s0)
@@ -2248,7 +2248,7 @@ PlayerInput:
         slli    a5,a5,2
         add     a5,a3,a5
         addi    a4,zero,2
-        sw      a4,0(a5)
+        # sw      a4,0(a5)
         addi    zero,zero,0
         addi    zero,zero,0
         lw      ra,44(sp)
