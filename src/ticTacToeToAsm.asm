@@ -2158,7 +2158,7 @@ getInput10:
 getInput11:
         addi    a7,zero,1
         lw      a1,0x104
-        beq     a1,zero,return5
+        bne     a1,zero,return5
         lw      a1,-36(s0)
         sw      a1,0x104
         addi    a1,zero,2
@@ -2387,7 +2387,7 @@ L190:
         addi    a5,zero,2
         bne     a4,a5,L180
         addi    a5,zero,-1
-        sw      a5,-20(s0)
+        sw      a5,-20(s0)# player
 L180:
         lw      a4,-24(s0) # option
         addi    a5,zero,2
