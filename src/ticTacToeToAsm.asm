@@ -90,20 +90,20 @@ L196:
         addi    sp,sp,32
         jalr    zero,0(ra)
 PcPlay:
-        addi    sp,sp,-176
+addi    sp,sp,-176
         sw      s0,172(sp)
         addi    s0,sp,176
         sw      zero,-20(s0)
         sw      zero,-24(s0)
-        jal     zero, L7
-L10:
+        j       .L11
+.L14:
         sw      zero,-28(s0)
-        jal     zero, L8
-L9:
-        # score
-        addi    a3,zero,0x148
+        j       .L12
+.L13:
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a4,-24(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-28(s0)
@@ -114,27 +114,27 @@ L9:
         lw      a5,-28(s0)
         addi    a5,a5,1
         sw      a5,-28(s0)
-L8:
+.L12:
         lw      a4,-28(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L9
+        li      a5,2
+        ble     a4,a5,.L13
         lw      a5,-24(s0)
         addi    a5,a5,1
         sw      a5,-24(s0)
-L7:
+.L11:
         lw      a4,-24(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L10
+        li      a5,2
+        ble     a4,a5,.L14
         sw      zero,-32(s0)
-        jal     zero, L11
-L40:
+        j       .L15
+.L42:
         sw      zero,-36(s0)
-        jal     zero, L12
-L13:
-        # chessboard
-        addi    a3,zero,0x124
+        j       .L16
+.L17:
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-32(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-36(s0)
@@ -148,38 +148,20 @@ L13:
         lw      a5,-36(s0)
         addi    a5,a5,1
         sw      a5,-36(s0)
-L12:
+.L16:
         lw      a4,-36(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L13
-        lw      a5,-20(s0)
-        addi    a5,a5,-3
-        li      a4,8
-        bgtu    a5,a4,L14
-        slli    a4,a5,2
-        # 
-        la      a5,L16
-        add     a5,a4,a5
-        lw      a5,0(a5)
-        jalr    zero,0(a5)
-L16:
-        # .word   L21
-        # .word   L20
-        #. word   L19
-        # .word   L14
-        # .word   L18
-        # .word   L17
-        # .word   L14
-        # .word   L14
-        # .word   L15
-L21:
+        li      a5,2
+        ble     a4,a5,.L17
+        lw      a4,-20(s0)
+        li      a5,3
+        bne     a4,a5,.L18
         sw      zero,-40(s0)
-        jal     zero, L22
-L24:
-        # chessboard
-        addi    a3,zero,0x124
+        j       .L19
+.L21:
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-32(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-40(s0)
@@ -188,11 +170,11 @@ L24:
         add     a5,a3,a5
         lw      a4,0(a5)
         li      a5,1
-        bne     a4,a5,L23
-        # score
-        addi    a3,zero,0x148
+        bne     a4,a5,.L20
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a4,-32(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-40(s0)
@@ -201,10 +183,10 @@ L24:
         add     a5,a3,a5
         lw      a5,0(a5)
         addi    a3,a5,1
-        # score
-        addi    a2,zero,0x148
+        lui     a5,0
+        addi    a2,a5,0x148
         lw      a4,-32(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-40(s0)
@@ -212,23 +194,26 @@ L24:
         slli    a5,a5,2
         add     a5,a2,a5
         sw      a3,0(a5)
-L23:
+.L20:
         lw      a5,-40(s0)
         addi    a5,a5,1
         sw      a5,-40(s0)
-L22:
+.L19:
         lw      a4,-40(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L24
-        jal     zero, L14
-L20:
+        li      a5,2
+        ble     a4,a5,.L21
+        j       .L22
+.L18:
+        lw      a4,-20(s0)
+        li      a5,4
+        bne     a4,a5,.L23
         sw      zero,-44(s0)
-        jal     zero, L25
-L27:
-        # chessboard
-        addi    a3,zero,0x124
+        j       .L24
+.L26:
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-32(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-44(s0)
@@ -236,12 +221,12 @@ L27:
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a4,0(a5)
-        addi    a5,zero,1
-        bne     a4,a5,L26
-        # score
-        addi    a3,zero,0x148
+        li      a5,1
+        bne     a4,a5,.L25
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a4,-32(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-44(s0)
@@ -250,10 +235,10 @@ L27:
         add     a5,a3,a5
         lw      a5,0(a5)
         addi    a3,a5,10
-        # score
-        addi    a2,zero,0x148
+        lui     a5,0
+        addi    a2,a5,0x148
         lw      a4,-32(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-44(s0)
@@ -261,23 +246,26 @@ L27:
         slli    a5,a5,2
         add     a5,a2,a5
         sw      a3,0(a5)
-L26:
+.L25:
         lw      a5,-44(s0)
         addi    a5,a5,1
         sw      a5,-44(s0)
-L25:
+.L24:
         lw      a4,-44(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L27
-        jal     zero, L14
-L17:
+        li      a5,2
+        ble     a4,a5,.L26
+        j       .L22
+.L23:
+        lw      a4,-20(s0)
+        li      a5,8
+        bne     a4,a5,.L27
         sw      zero,-48(s0)
-        jal     zero, L28
-L30:
-        # chessboard
-        addi    a3,zero,0x124
+        j       .L28
+.L30:
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-32(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-48(s0)
@@ -285,12 +273,12 @@ L30:
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a4,0(a5)
-        addi    a5,zero,1
-        bne     a4,a5,L29
-        # score
-        addi    a3,zero,0x148
+        li      a5,1
+        bne     a4,a5,.L29
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a4,-32(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-48(s0)
@@ -299,10 +287,10 @@ L30:
         add     a5,a3,a5
         lw      a5,0(a5)
         addi    a3,a5,50
-        # score
-        addi    a2,zero,0x148
+        lui     a5,0
+        addi    a2,a5,0x148
         lw      a4,-32(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-48(s0)
@@ -310,23 +298,26 @@ L30:
         slli    a5,a5,2
         add     a5,a2,a5
         sw      a3,0(a5)
-L29:
+.L29:
         lw      a5,-48(s0)
         addi    a5,a5,1
         sw      a5,-48(s0)
-L28:
+.L28:
         lw      a4,-48(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L30
-        jal     zero, L14
-L18:
+        li      a5,2
+        ble     a4,a5,.L30
+        j       .L22
+.L27:
+        lw      a4,-20(s0)
+        li      a5,7
+        bne     a4,a5,.L31
         sw      zero,-52(s0)
-        jal     zero, L31
-L33:
-        # chessboard
-        addi    a3,zero,0x124
+        j       .L32
+.L34:
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-32(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-52(s0)
@@ -334,12 +325,12 @@ L33:
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a4,0(a5)
-        addi    a5,zero,1
-        bne     a4,a5,L32
-        # score
-        addi    a3,zero,0x148
+        li      a5,1
+        bne     a4,a5,.L33
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a4,-32(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-52(s0)
@@ -348,10 +339,10 @@ L33:
         add     a5,a3,a5
         lw      a5,0(a5)
         addi    a3,a5,200
-        # score
-        addi    a2,zero,0x148
+        lui     a5,0
+        addi    a2,a5,0x148
         lw      a4,-32(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-52(s0)
@@ -359,23 +350,26 @@ L33:
         slli    a5,a5,2
         add     a5,a2,a5
         sw      a3,0(a5)
-L32:
+.L33:
         lw      a5,-52(s0)
         addi    a5,a5,1
         sw      a5,-52(s0)
-L31:
+.L32:
         lw      a4,-52(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L33
-        jal     zero, L14
-L19:
+        li      a5,2
+        ble     a4,a5,.L34
+        j       .L22
+.L31:
+        lw      a4,-20(s0)
+        li      a5,5
+        bne     a4,a5,.L35
         sw      zero,-56(s0)
-        jal     zero, L34
-L36:
-        # chessboard
-        addi    a3,zero,0x124
+        j       .L36
+.L38:
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-32(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-56(s0)
@@ -383,12 +377,12 @@ L36:
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a4,0(a5)
-        addi    a5,zero,1
-        bne     a4,a5,L35
-        # score
-        addi    a3,zero,0x148
+        li      a5,1
+        bne     a4,a5,.L37
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a4,-32(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-56(s0)
@@ -397,10 +391,10 @@ L36:
         add     a5,a3,a5
         lw      a5,0(a5)
         addi    a3,a5,500
-        # score
-        addi    a2,zero,0x148
+        lui     a5,0
+        addi    a2,a5,0x148
         lw      a4,-32(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-56(s0)
@@ -408,23 +402,26 @@ L36:
         slli    a5,a5,2
         add     a5,a2,a5
         sw      a3,0(a5)
-L35:
+.L37:
         lw      a5,-56(s0)
         addi    a5,a5,1
         sw      a5,-56(s0)
-L34:
+.L36:
         lw      a4,-56(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L36
-        jal     zero, L14
-L15:
+        li      a5,2
+        ble     a4,a5,.L38
+        j       .L22
+.L35:
+        lw      a4,-20(s0)
+        li      a5,11
+        bne     a4,a5,.L22
         sw      zero,-60(s0)
-        jal     zero, L37
-L39:
-        # chessboard
-        addi    a3,zero,0x124
+        j       .L39
+.L41:
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-32(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-60(s0)
@@ -432,12 +429,12 @@ L39:
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a4,0(a5)
-        addi    a5,zero,1
-        bne     a4,a5,L38
-        # score
-        addi    a3,zero,0x148
+        li      a5,1
+        bne     a4,a5,.L40
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a4,-32(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-60(s0)
@@ -446,10 +443,10 @@ L39:
         add     a5,a3,a5
         lw      a5,0(a5)
         addi    a3,a5,1000
-        # score
-        addi    a2,zero,0x148
+        lui     a5,0
+        addi    a2,a5,0x148
         lw      a4,-32(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-60(s0)
@@ -457,34 +454,33 @@ L39:
         slli    a5,a5,2
         add     a5,a2,a5
         sw      a3,0(a5)
-L38:
+.L40:
         lw      a5,-60(s0)
         addi    a5,a5,1
         sw      a5,-60(s0)
-L37:
+.L39:
         lw      a4,-60(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L39
-        addi    zero,zero,0
-L14:
+        li      a5,2
+        ble     a4,a5,.L41
+.L22:
         sw      zero,-20(s0)
         lw      a5,-32(s0)
         addi    a5,a5,1
         sw      a5,-32(s0)
-L11:
+.L15:
         lw      a4,-32(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L40
+        li      a5,2
+        ble     a4,a5,.L42
         sw      zero,-64(s0)
-        jal     zero, L41
-L70:
+        j       .L43
+.L70:
         sw      zero,-68(s0)
-        jal     zero, L42
-L43:
-        # chessboard
-        addi    a3,zero,0x124
+        j       .L44
+.L45:
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-68(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-64(s0)
@@ -498,38 +494,20 @@ L43:
         lw      a5,-68(s0)
         addi    a5,a5,1
         sw      a5,-68(s0)
-L42:
+.L44:
         lw      a4,-68(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L43
-        lw      a5,-20(s0)
-        addi    a5,a5,-3
-        addi    a4,zero,8
-        bgtu    a5,a4,L44
-        slli    a4,a5,2
-        #
-        la      a5,L46
-        add     a5,a4,a5
-        lw      a5,0(a5)
-        jalr    zero,0(a5)
-L46:
-        #.word   L51
-        #.word   L50
-        #.word   L49
-        #.word   L44
-        #.word   L48
-        #.word   L47
-        #.word   L44
-        #.word   L44
-        #.word   L45
-L51:
+        li      a5,2
+        ble     a4,a5,.L45
+        lw      a4,-20(s0)
+        li      a5,3
+        bne     a4,a5,.L46
         sw      zero,-72(s0)
-        jal     zero, L52
-L54:
-        # chessboard
-        addi    a3,zero,0x124
+        j       .L47
+.L49:
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-72(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-64(s0)
@@ -537,12 +515,12 @@ L54:
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a4,0(a5)
-        addi    a5,zero,1
-        bne     a4,a5,L53
-        # score
-        addi    a3,zero,0x148
+        li      a5,1
+        bne     a4,a5,.L48
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a4,-72(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-64(s0)
@@ -551,10 +529,10 @@ L54:
         add     a5,a3,a5
         lw      a5,0(a5)
         addi    a3,a5,1
-        # score
-        addi    a2,zero,0x148
+        lui     a5,0
+        addi    a2,a5,0x148
         lw      a4,-72(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-64(s0)
@@ -562,23 +540,26 @@ L54:
         slli    a5,a5,2
         add     a5,a2,a5
         sw      a3,0(a5)
-L53:
+.L48:
         lw      a5,-72(s0)
         addi    a5,a5,1
         sw      a5,-72(s0)
-L52:
+.L47:
         lw      a4,-72(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L54
-        jal     zero, L44
-L50:
+        li      a5,2
+        ble     a4,a5,.L49
+        j       .L50
+.L46:
+        lw      a4,-20(s0)
+        li      a5,4
+        bne     a4,a5,.L51
         sw      zero,-76(s0)
-        jal     zero, L55
-L57:
-        # chessboard
-        addi    a3,zero,0x124
+        j       .L52
+.L54:
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-76(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-64(s0)
@@ -586,12 +567,12 @@ L57:
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a4,0(a5)
-        addi    a5,zero,1
-        bne     a4,a5,L56
-        # score
-        addi    a3,zero,0x148
+        li      a5,1
+        bne     a4,a5,.L53
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a4,-76(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-64(s0)
@@ -600,10 +581,10 @@ L57:
         add     a5,a3,a5
         lw      a5,0(a5)
         addi    a3,a5,10
-        # score
-        addi    a2,zero,0x148
+        lui     a5,0
+        addi    a2,a5,0x148
         lw      a4,-76(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-64(s0)
@@ -611,23 +592,26 @@ L57:
         slli    a5,a5,2
         add     a5,a2,a5
         sw      a3,0(a5)
-L56:
+.L53:
         lw      a5,-76(s0)
         addi    a5,a5,1
         sw      a5,-76(s0)
-L55:
+.L52:
         lw      a4,-76(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L57
-        jal     zero, L44
-L47:
+        li      a5,2
+        ble     a4,a5,.L54
+        j       .L50
+.L51:
+        lw      a4,-20(s0)
+        li      a5,8
+        bne     a4,a5,.L55
         sw      zero,-80(s0)
-        jal     zero, L58
-L60:
-        # chessboard
-        addi    a3,zero,0x124
+        j       .L56
+.L58:
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-80(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-64(s0)
@@ -635,12 +619,12 @@ L60:
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a4,0(a5)
-        addi    a5,zero,1
-        bne     a4,a5,L59
-        # score
-        addi    a3,zero,0x148
+        li      a5,1
+        bne     a4,a5,.L57
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a4,-80(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-64(s0)
@@ -649,10 +633,10 @@ L60:
         add     a5,a3,a5
         lw      a5,0(a5)
         addi    a3,a5,50
-        # score
-        addi    a2,zero,0x148
+        lui     a5,0
+        addi    a2,a5,0x148
         lw      a4,-80(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-64(s0)
@@ -660,23 +644,26 @@ L60:
         slli    a5,a5,2
         add     a5,a2,a5
         sw      a3,0(a5)
-L59:
+.L57:
         lw      a5,-80(s0)
         addi    a5,a5,1
         sw      a5,-80(s0)
-L58:
+.L56:
         lw      a4,-80(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L60
-        jal     zero, L44
-L48:
+        li      a5,2
+        ble     a4,a5,.L58
+        j       .L50
+.L55:
+        lw      a4,-20(s0)
+        li      a5,7
+        bne     a4,a5,.L59
         sw      zero,-84(s0)
-        jal     zero, L61
-L63:
-        # chessboard
-        addi    a3,zero,0x124
+        j       .L60
+.L62:
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-84(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-64(s0)
@@ -685,11 +672,11 @@ L63:
         add     a5,a3,a5
         lw      a4,0(a5)
         li      a5,1
-        bne     a4,a5,L62
-        # score
-        addi    a3,zero,0x148
+        bne     a4,a5,.L61
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a4,-84(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-64(s0)
@@ -698,10 +685,10 @@ L63:
         add     a5,a3,a5
         lw      a5,0(a5)
         addi    a3,a5,200
-        # score
-        addi    a2,zero,0x148
+        lui     a5,0
+        addi    a2,a5,0x148
         lw      a4,-84(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-64(s0)
@@ -709,23 +696,26 @@ L63:
         slli    a5,a5,2
         add     a5,a2,a5
         sw      a3,0(a5)
-L62:
+.L61:
         lw      a5,-84(s0)
         addi    a5,a5,1
         sw      a5,-84(s0)
-L61:
+.L60:
         lw      a4,-84(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L63
-        jal     zero, L44
-L49:
+        li      a5,2
+        ble     a4,a5,.L62
+        j       .L50
+.L59:
+        lw      a4,-20(s0)
+        li      a5,5
+        bne     a4,a5,.L63
         sw      zero,-88(s0)
-        jal     zero, L64
-L66:
-        # chessboard
-        addi    a3,zero,0x124
+        j       .L64
+.L66:
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-88(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-64(s0)
@@ -734,11 +724,11 @@ L66:
         add     a5,a3,a5
         lw      a4,0(a5)
         li      a5,1
-        bne     a4,a5,L65
-        # score
-        addi    a3,zero,0x148
+        bne     a4,a5,.L65
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a4,-88(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-64(s0)
@@ -747,10 +737,10 @@ L66:
         add     a5,a3,a5
         lw      a5,0(a5)
         addi    a3,a5,500
-        # score
-        addi    a2,zero,0x148
+        lui     a5,0
+        addi    a2,a5,0x148
         lw      a4,-88(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-64(s0)
@@ -758,23 +748,26 @@ L66:
         slli    a5,a5,2
         add     a5,a2,a5
         sw      a3,0(a5)
-L65:
+.L65:
         lw      a5,-88(s0)
         addi    a5,a5,1
         sw      a5,-88(s0)
-L64:
+.L64:
         lw      a4,-88(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L66
-        jal     zero, L44
-L45:
+        li      a5,2
+        ble     a4,a5,.L66
+        j       .L50
+.L63:
+        lw      a4,-20(s0)
+        li      a5,11
+        bne     a4,a5,.L50
         sw      zero,-92(s0)
-        jal     zero, L67
-L69:
-        # chessboard
-        addi    a3,zero,0x124
+        j       .L67
+.L69:
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-92(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-64(s0)
@@ -783,11 +776,11 @@ L69:
         add     a5,a3,a5
         lw      a4,0(a5)
         li      a5,1
-        bne     a4,a5,L68
-        # score
-        addi    a3,zero,0x148
+        bne     a4,a5,.L68
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a4,-92(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-64(s0)
@@ -796,10 +789,10 @@ L69:
         add     a5,a3,a5
         lw      a5,0(a5)
         addi    a3,a5,1000
-        # score
-        addi    a2,zero,0x148
+        lui     a5,0
+        addi    a2,a5,0x148
         lw      a4,-92(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-64(s0)
@@ -807,29 +800,28 @@ L69:
         slli    a5,a5,2
         add     a5,a2,a5
         sw      a3,0(a5)
-L68:
+.L68:
         lw      a5,-92(s0)
         addi    a5,a5,1
         sw      a5,-92(s0)
-L67:
+.L67:
         lw      a4,-92(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L69
-        addi    zero,zero,0
-L44:
+        li      a5,2
+        ble     a4,a5,.L69
+.L50:
         sw      zero,-20(s0)
         lw      a5,-64(s0)
         addi    a5,a5,1
         sw      a5,-64(s0)
-L41:
+.L43:
         lw      a4,-64(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L70
+        li      a5,2
+        ble     a4,a5,.L70
         sw      zero,-96(s0)
-        jal     zero, L71
-L72:
-        # chessboard
-        addi    a4,zero,0x124
+        j       .L71
+.L72:
+        lui     a5,0
+        addi    a4,a5,0x124
         lw      a5,-96(s0)
         slli    a5,a5,4
         add     a5,a4,a5
@@ -840,246 +832,242 @@ L72:
         lw      a5,-96(s0)
         addi    a5,a5,1
         sw      a5,-96(s0)
-L71:
+.L71:
         lw      a4,-96(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L72
-        lw      a5,-20(s0)
-        addi    a5,a5,-3
-        addi    a4,zero,8
-        bgtu    a5,a4,L73
-        slli    a4,a5,2
-        # 
-        la      a5,L75
-        add     a5,a4,a5
-        lw      a5,0(a5)
-        jalr    zero,0(a5)
-L75:
-        #.word   L80
-        #.word   L79
-        #.word   L78
-        #.word   L73
-        #.word   L77
-        #.word   L76
-        #.word   L73
-        #.word   L73
-        #.word   L74
-L80:
+        li      a5,2
+        ble     a4,a5,.L72
+        lw      a4,-20(s0)
+        li      a5,3
+        bne     a4,a5,.L73
         sw      zero,-100(s0)
-        jal     zero, L81
-L83:
-        # chessboard
-        addi    a4,zero,0x124
+        j       .L74
+.L76:
+        lui     a5,0
+        addi    a4,a5,0x124
         lw      a5,-100(s0)
         slli    a5,a5,4
         add     a5,a4,a5
         lw      a4,0(a5)
-        addi    a5,zero,1
-        bne     a4,a5,L82
-        # score
-        addi    a4,zero,0x148
+        li      a5,1
+        bne     a4,a5,.L75
+        lui     a5,0
+        addi    a4,a5,0x148
         lw      a5,-100(s0)
         slli    a5,a5,4
         add     a5,a4,a5
         lw      a5,0(a5)
         addi    a4,a5,1
-        # score
-        addi    a3,zero,0x148
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a5,-100(s0)
         slli    a5,a5,4
         add     a5,a3,a5
         sw      a4,0(a5)
-L82:
+.L75:
         lw      a5,-100(s0)
         addi    a5,a5,1
         sw      a5,-100(s0)
-L81:
+.L74:
         lw      a4,-100(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L83
-        jal     zero, L73
-L79:
+        li      a5,2
+        ble     a4,a5,.L76
+        j       .L77
+.L73:
+        lw      a4,-20(s0)
+        li      a5,4
+        bne     a4,a5,.L78
         sw      zero,-104(s0)
-        jal     zero, L84
-L86:
-        # chessboard
-        addi    a4,zero,0x124
+        j       .L79
+.L81:
+        lui     a5,0
+        addi    a4,a5,0x124
         lw      a5,-104(s0)
         slli    a5,a5,4
         add     a5,a4,a5
         lw      a4,0(a5)
-        addi    a5,zero,1
-        bne     a4,a5,L85
-        # score
-        addi    a4,zero,0x148
+        li      a5,1
+        bne     a4,a5,.L80
+        lui     a5,0
+        addi    a4,a5,0x148
         lw      a5,-104(s0)
         slli    a5,a5,4
         add     a5,a4,a5
         lw      a5,0(a5)
         addi    a4,a5,10
-        # score
-        addi    a3,zero,0x148
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a5,-104(s0)
         slli    a5,a5,4
         add     a5,a3,a5
         sw      a4,0(a5)
-L85:
+.L80:
         lw      a5,-104(s0)
         addi    a5,a5,1
         sw      a5,-104(s0)
-L84:
+.L79:
         lw      a4,-104(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L86
-        jal     zero, L73
-L76:
+        li      a5,2
+        ble     a4,a5,.L81
+        j       .L77
+.L78:
+        lw      a4,-20(s0)
+        li      a5,8
+        bne     a4,a5,.L82
         sw      zero,-108(s0)
-        jal     zero, L87
-L89:
-        # chessboard
-        addi    a4,zero,0x124
+        j       .L83
+.L85:
+        lui     a5,0
+        addi    a4,a5,0x124
         lw      a5,-108(s0)
         slli    a5,a5,4
         add     a5,a4,a5
         lw      a4,0(a5)
-        addi    a5,zero,1
-        bne     a4,a5,L88
-        # score
-        addi    a4,zero,0x148
+        li      a5,1
+        bne     a4,a5,.L84
+        lui     a5,0
+        addi    a4,a5,0x148
         lw      a5,-108(s0)
         slli    a5,a5,4
         add     a5,a4,a5
         lw      a5,0(a5)
         addi    a4,a5,50
-        # score
-        addi    a3,zero,0x148
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a5,-108(s0)
         slli    a5,a5,4
         add     a5,a3,a5
         sw      a4,0(a5)
-L88:
+.L84:
         lw      a5,-108(s0)
         addi    a5,a5,1
         sw      a5,-108(s0)
-L87:
+.L83:
         lw      a4,-108(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L89
-        jal     zero, L73
-L77:
+        li      a5,2
+        ble     a4,a5,.L85
+        j       .L77
+.L82:
+        lw      a4,-20(s0)
+        li      a5,7
+        bne     a4,a5,.L86
         sw      zero,-112(s0)
-        jal     zero, L90
-L92:
-        # chessboard
-        addi    a4,zero,0x124
+        j       .L87
+.L89:
+        lui     a5,0
+        addi    a4,a5,0x124
         lw      a5,-112(s0)
         slli    a5,a5,4
         add     a5,a4,a5
         lw      a4,0(a5)
-        addi    a5,zero,1
-        bne     a4,a5,L91
-        # score
-        addi    a4,zero,0x148
+        li      a5,1
+        bne     a4,a5,.L88
+        lui     a5,0
+        addi    a4,a5,0x148
         lw      a5,-112(s0)
         slli    a5,a5,4
         add     a5,a4,a5
         lw      a5,0(a5)
         addi    a4,a5,100
-        # score
-        addi    a3,zero,0x148
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a5,-112(s0)
         slli    a5,a5,4
         add     a5,a3,a5
         sw      a4,0(a5)
-L91:
+.L88:
         lw      a5,-112(s0)
         addi    a5,a5,1
         sw      a5,-112(s0)
-L90:
+.L87:
         lw      a4,-112(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L92
-        jal     zero, L73
-L78:
+        li      a5,2
+        ble     a4,a5,.L89
+        j       .L77
+.L86:
+        lw      a4,-20(s0)
+        li      a5,5
+        bne     a4,a5,.L90
         sw      zero,-116(s0)
-        jal     zero, L93
-L95:
-        # chessboard
-        addi    a4,zero,0x124
+        j       .L91
+.L93:
+        lui     a5,0
+        addi    a4,a5,0x124
         lw      a5,-116(s0)
         slli    a5,a5,4
         add     a5,a4,a5
         lw      a4,0(a5)
-        addi    a5,zero,1
-        bne     a4,a5,L94
-        # score
-        addi    a4,zero,0x148
+        li      a5,1
+        bne     a4,a5,.L92
+        lui     a5,0
+        addi    a4,a5,0x148
         lw      a5,-116(s0)
         slli    a5,a5,4
         add     a5,a4,a5
         lw      a5,0(a5)
         addi    a4,a5,500
-        # score
-        addi    a3,zero,0x148
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a5,-116(s0)
         slli    a5,a5,4
         add     a5,a3,a5
         sw      a4,0(a5)
-L94:
+.L92:
         lw      a5,-116(s0)
         addi    a5,a5,1
         sw      a5,-116(s0)
-L93:
+.L91:
         lw      a4,-116(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L95
-        jal     zero, L73
-L74:
+        li      a5,2
+        ble     a4,a5,.L93
+        j       .L77
+.L90:
+        lw      a4,-20(s0)
+        li      a5,11
+        bne     a4,a5,.L77
         sw      zero,-120(s0)
-        jal     zero, L96
-L98:
-        # chessboard
-        addi    a4,zero,0x124
+        j       .L94
+.L96:
+        lui     a5,0
+        addi    a4,a5,0x124
         lw      a5,-120(s0)
         slli    a5,a5,4
         add     a5,a4,a5
         lw      a4,0(a5)
-        addi    a5,zero,1
-        bne     a4,a5,L97
-        # score
-        addi    a4,zero,0x148
+        li      a5,1
+        bne     a4,a5,.L95
+        lui     a5,0
+        addi    a4,a5,0x148
         lw      a5,-120(s0)
         slli    a5,a5,4
         add     a5,a4,a5
         lw      a5,0(a5)
         addi    a4,a5,1000
-        # score
-        addi    a3,zero,0x148
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a5,-120(s0)
         slli    a5,a5,4
         add     a5,a3,a5
         sw      a4,0(a5)
-L97:
+.L95:
         lw      a5,-120(s0)
         addi    a5,a5,1
         sw      a5,-120(s0)
-L96:
+.L94:
         lw      a4,-120(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L98
-        addi    zero,zero,0
-L73:
+        li      a5,2
+        ble     a4,a5,.L96
+.L77:
         sw      zero,-20(s0)
         sw      zero,-124(s0)
-        jal     zero, L99
-L100:
-        addi    a4,zero,2
+        j       .L97
+.L98:
+        li      a4,2
         lw      a5,-124(s0)
         sub     a2,a4,a5
-        # chessboard
-        addi    a3,zero,0x124
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-124(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         add     a5,a5,a2
@@ -1092,373 +1080,369 @@ L100:
         lw      a5,-124(s0)
         addi    a5,a5,1
         sw      a5,-124(s0)
-L99:
+.L97:
         lw      a4,-124(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L100
-        lw      a5,-20(s0)
-        addi    a5,a5,-3
-        addi    a4,zero,8
-        bgtu    a5,a4,L101
-        slli    a4,a5,2
-        # 
-        la      a5,L103
-        add     a5,a4,a5
-        lw      a5,0(a5)
-        jalr    zero,0(a5)
-L103:
-        #.word   L108
-        #.word   L107
-        #.word   L106
-        #.word   L101
-        #.word   L105
-        #.word   L104
-        #.word   L101
-        #.word   L101
-        #.word   L102
-L108:
+        li      a5,2
+        ble     a4,a5,.L98
+        lw      a4,-20(s0)
+        li      a5,3
+        bne     a4,a5,.L99
         sw      zero,-128(s0)
-        jal     zero, L109
-L111:
-        addi    a4,zero,2
+        j       .L100
+.L102:
+        li      a4,2
         lw      a5,-128(s0)
         sub     a2,a4,a5
-        # chessboard
-        addi    a3,zero,0x124
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-128(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         add     a5,a5,a2
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a4,0(a5)
-        addi    a5,zero,1
-        bne     a4,a5,L110
-        addi    a4,zero,2
+        li      a5,1
+        bne     a4,a5,.L101
+        li      a4,2
         lw      a5,-128(s0)
         sub     a2,a4,a5
-        # score
-        addi    a3,zero,0x148
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a4,-128(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         add     a5,a5,a2
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a5,0(a5)
-        addi    a3,zero,2
+        li      a3,2
         lw      a4,-128(s0)
         sub     a1,a3,a4
         addi    a3,a5,1
-        # score
-        addi    a2,zero,0x148
+        lui     a5,0
+        addi    a2,a5,0x148
         lw      a4,-128(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         add     a5,a5,a1
         slli    a5,a5,2
         add     a5,a2,a5
         sw      a3,0(a5)
-L110:
+.L101:
         lw      a5,-128(s0)
         addi    a5,a5,1
         sw      a5,-128(s0)
-L109:
+.L100:
         lw      a4,-128(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L111
-        jal     zero, L101
-L107:
+        li      a5,2
+        ble     a4,a5,.L102
+        j       .L103
+.L99:
+        lw      a4,-20(s0)
+        li      a5,4
+        bne     a4,a5,.L104
         sw      zero,-132(s0)
-        jal     zero, L112
-L114:
-        addi    a4,zero,2
+        j       .L105
+.L107:
+        li      a4,2
         lw      a5,-132(s0)
         sub     a2,a4,a5
-        # chessboard
-        addi    a3,zero,0x124
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-132(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         add     a5,a5,a2
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a4,0(a5)
-        addi    a5,zero,1
-        bne     a4,a5,L113
-        addi    a4,zero,2
+        li      a5,1
+        bne     a4,a5,.L106
+        li      a4,2
         lw      a5,-132(s0)
         sub     a2,a4,a5
-        # score
-        addi    a3,zero,0x148
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a4,-132(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         add     a5,a5,a2
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a5,0(a5)
-        addi    a3,zero,2
+        li      a3,2
         lw      a4,-132(s0)
         sub     a1,a3,a4
         addi    a3,a5,10
-        # score
-        addi    a2,zero,0x148
+        lui     a5,0
+        addi    a2,a5,0x148
         lw      a4,-132(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         add     a5,a5,a1
         slli    a5,a5,2
         add     a5,a2,a5
         sw      a3,0(a5)
-L113:
+.L106:
         lw      a5,-132(s0)
         addi    a5,a5,1
         sw      a5,-132(s0)
-L112:
+.L105:
         lw      a4,-132(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L114
-        jal     zero, L101
-L104:
+        li      a5,2
+        ble     a4,a5,.L107
+        j       .L103
+.L104:
+        lw      a4,-20(s0)
+        li      a5,8
+        bne     a4,a5,.L108
         sw      zero,-136(s0)
-        jal     zero, L115
-L117:
-        addi    a4,zero,2
+        j       .L109
+.L111:
+        li      a4,2
         lw      a5,-136(s0)
         sub     a2,a4,a5
-        # chessboard
-        addi    a3,zero,0x124
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-136(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         add     a5,a5,a2
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a4,0(a5)
-        addi    a5,zero,1
-        bne     a4,a5,L116
-        addi    a4,zero,2
+        li      a5,1
+        bne     a4,a5,.L110
+        li      a4,2
         lw      a5,-136(s0)
         sub     a2,a4,a5
-        # score
-        addi    a3,zero,0x148
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a4,-136(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         add     a5,a5,a2
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a5,0(a5)
-        addi    a3,zero,2
+        li      a3,2
         lw      a4,-136(s0)
         sub     a1,a3,a4
         addi    a3,a5,50
-        # score
-        addi    a2,zero,0x148
+        lui     a5,0
+        addi    a2,a5,0x148
         lw      a4,-136(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         add     a5,a5,a1
         slli    a5,a5,2
         add     a5,a2,a5
         sw      a3,0(a5)
-L116:
+.L110:
         lw      a5,-136(s0)
         addi    a5,a5,1
         sw      a5,-136(s0)
-L115:
+.L109:
         lw      a4,-136(s0)
         li      a5,2
-        ble     a4,a5,L117
-        jal     zero, L101
-L105:
+        ble     a4,a5,.L111
+        j       .L103
+.L108:
+        lw      a4,-20(s0)
+        li      a5,7
+        bne     a4,a5,.L112
         sw      zero,-140(s0)
-        jal     zero, L118
-L120:
-        addi    a4,zero,2
+        j       .L113
+.L115:
+        li      a4,2
         lw      a5,-140(s0)
         sub     a2,a4,a5
-        # chessboard
-        addi    a3,zero,0x124
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-140(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         add     a5,a5,a2
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a4,0(a5)
-        addi    a5,zero,1
-        bne     a4,a5,L119
-        addi    a4,zero,2
+        li      a5,1
+        bne     a4,a5,.L114
+        li      a4,2
         lw      a5,-140(s0)
         sub     a2,a4,a5
-        # score
-        addi    a3,zero,0x148
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a4,-140(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         add     a5,a5,a2
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a5,0(a5)
-        addi    a3,zero,2
+        li      a3,2
         lw      a4,-140(s0)
         sub     a1,a3,a4
         addi    a3,a5,100
-        # score
-        addi    a2,zero,0x148
+        lui     a5,0
+        addi    a2,a5,0x148
         lw      a4,-140(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         add     a5,a5,a1
         slli    a5,a5,2
         add     a5,a2,a5
         sw      a3,0(a5)
-L119:
+.L114:
         lw      a5,-140(s0)
         addi    a5,a5,1
         sw      a5,-140(s0)
-L118:
+.L113:
         lw      a4,-140(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L120
-        jal     zero, L101
-L106:
+        li      a5,2
+        ble     a4,a5,.L115
+        j       .L103
+.L112:
+        lw      a4,-20(s0)
+        li      a5,5
+        bne     a4,a5,.L116
         sw      zero,-144(s0)
-        jal     zero, L121
-L123:
-        addi    a4,zero,2
+        j       .L117
+.L119:
+        li      a4,2
         lw      a5,-144(s0)
         sub     a2,a4,a5
-        # chessboard
-        addi    a3,zero,0x124
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-144(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         add     a5,a5,a2
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a4,0(a5)
-        addi    a5,zero,1
-        bne     a4,a5,L122
-        addi    a4,zero,2
+        li      a5,1
+        bne     a4,a5,.L118
+        li      a4,2
         lw      a5,-144(s0)
         sub     a2,a4,a5
-        # score
-        addi    a3,zero,0x148
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a4,-144(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         add     a5,a5,a2
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a5,0(a5)
-        addi    a3,zero,2
+        li      a3,2
         lw      a4,-144(s0)
         sub     a1,a3,a4
         addi    a3,a5,500
-        # score
-        addi    a2,zero,0x148
+        lui     a5,0
+        addi    a2,a5,0x148
         lw      a4,-144(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         add     a5,a5,a1
         slli    a5,a5,2
         add     a5,a2,a5
         sw      a3,0(a5)
-L122:
+.L118:
         lw      a5,-144(s0)
         addi    a5,a5,1
         sw      a5,-144(s0)
-L121:
+.L117:
         lw      a4,-144(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L123
-        jal     zero, L101
-L102:
+        li      a5,2
+        ble     a4,a5,.L119
+        j       .L103
+.L116:
+        lw      a4,-20(s0)
+        li      a5,11
+        bne     a4,a5,.L103
         sw      zero,-148(s0)
-        jal     zero, L124
-L126:
-        addi    a4,zero,2
+        j       .L120
+.L122:
+        li      a4,2
         lw      a5,-148(s0)
         sub     a2,a4,a5
-        # chessboard
-        addi    a3,zero,0x124
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-148(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         add     a5,a5,a2
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a4,0(a5)
-        addi    a5,zero,1
-        bne     a4,a5,L125
-        addi    a4,zero,2
+        li      a5,1
+        bne     a4,a5,.L121
+        li      a4,2
         lw      a5,-148(s0)
         sub     a2,a4,a5
-        # score
-        addi    a3,zero,0x148
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a4,-148(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         add     a5,a5,a2
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a5,0(a5)
-        addi    a3,zero,2
+        li      a3,2
         lw      a4,-148(s0)
         sub     a1,a3,a4
         addi    a3,a5,1000
-        # score
-        addi    a2,zero,0x148
+        lui     a5,0
+        addi    a2,a5,0x148
         lw      a4,-148(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         add     a5,a5,a1
         slli    a5,a5,2
         add     a5,a2,a5
         sw      a3,0(a5)
-L125:
+.L121:
         lw      a5,-148(s0)
         addi    a5,a5,1
         sw      a5,-148(s0)
-L124:
+.L120:
         lw      a4,-148(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L126
-        addi    zero,zero,0
-L101:
+        li      a5,2
+        ble     a4,a5,.L122
+.L103:
         sw      zero,-152(s0)
         sw      zero,-156(s0)
         sw      zero,-160(s0)
-        jal     zero, L127
-L131:
+        j       .L123
+.L127:
         sw      zero,-164(s0)
-        jal     zero, L128
-L130:
-        # score
-        addi    a3,zero,0x148
+        j       .L124
+.L126:
+        lui     a5,0
+        addi    a3,a5,0x148
         lw      a4,-160(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-164(s0)
@@ -1466,10 +1450,10 @@ L130:
         slli    a5,a5,2
         add     a5,a3,a5
         lw      a3,0(a5)
-        # score
-        addi    a2,zero,0x148
+        lui     a5,0
+        addi    a2,a5,0x148
         lw      a4,-152(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-156(s0)
@@ -1477,54 +1461,54 @@ L130:
         slli    a5,a5,2
         add     a5,a2,a5
         lw      a5,0(a5)
-        ble     a3,a5,L129
+        ble     a3,a5,.L125
         lw      a5,-160(s0)
         sw      a5,-152(s0)
         lw      a5,-164(s0)
         sw      a5,-156(s0)
-L129:
+.L125:
         lw      a5,-164(s0)
         addi    a5,a5,1
         sw      a5,-164(s0)
-L128:
+.L124:
         lw      a4,-164(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L130
+        li      a5,2
+        ble     a4,a5,.L126
         lw      a5,-160(s0)
         addi    a5,a5,1
         sw      a5,-160(s0)
-L127:
+.L123:
         lw      a4,-160(s0)
-        addi    a5,zero,2
-        ble     a4,a5,L131
-        # chessboard
-        addi    a3,zero,0x124
+        li      a5,2
+        ble     a4,a5,.L127
+        lui     a5,0
+        addi    a3,a5,0x124
         lw      a4,-152(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-156(s0)
         add     a5,a5,a4
         slli    a5,a5,2
         add     a5,a3,a5
-        addi    a4,zero,5
+        li      a4,5
         sw      a4,0(a5)
-        # chess
-        addi    a3,zero,0x100
+        lui     a5,0
+        addi    a3,a5,0x100
         lw      a4,-152(s0)
-        addi    a5,a4,0
+        mv      a5,a4
         slli    a5,a5,1
         add     a5,a5,a4
         lw      a4,-156(s0)
         add     a5,a5,a4
         slli    a5,a5,2
         add     a5,a3,a5
-        addi    a4,zero,-1
+        li      a4,-1
         sw      a4,0(a5)
-        addi    zero,zero,0
+        nop
         lw      s0,172(sp)
         addi    sp,sp,176
-        jalr    zero,0(ra)
+        jr      ra
 evaluate:
         addi    sp,sp,-64
         sw      s0,60(sp)
@@ -2353,7 +2337,7 @@ PVCmode:
         uret
 
 showWinner:
-        addi    a0,zero,3
+        addi    a0,a0,3
         addi    a7,zero,34
         ecall
         jalr    zero,0(ra)
@@ -2364,6 +2348,7 @@ PlayTicTacToe:
         sw      s0,24(sp)
         addi    s0,sp,32
         call	Reset
+        call    PrintChessboard
         
         #wait intr
         addi    a7,zero,0
@@ -2452,9 +2437,11 @@ L185:
 
 isRepeat:
         addi    a0,zero,1
+        addi    a7,zero,1
         uret
 notRepeat:
         addi    a0,zero,0
+        addi    a7,zero,1
         uret
 main:
         addi    sp,sp,-16
