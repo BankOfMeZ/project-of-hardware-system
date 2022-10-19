@@ -1,9 +1,9 @@
 # start from 0x100
-chess:  # .zero   36 0x100 ~ 0x108
+chess:  # .zero   36 0x100
 chessboard:
-        # .zero   36 0x124 ~ 0x12c
+        # .zero   36 0x124
 score:
-        # .zero   36 0x148 ~ 0x150
+        # .zero   36 0x148
 x:
         # .zero   4 0x16c
 y:
